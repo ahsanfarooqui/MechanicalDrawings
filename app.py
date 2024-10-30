@@ -25,7 +25,7 @@ def extract_drawing_information(image_bytes):
                 "content": [
                     {
                         "type": "text",
-                        "text": "You are an expert in reading mechnaical engineering drawings. Please analyze the attached mechanical engineering drawing and extract all dimensions along with the symbol provided to it and other information in a table format. (Markdown). Also please share your expert analysis (with a disclaimer) on how hard it is to cast this part "
+                        "text": "You are an expert in reading mechnaical engineering drawings. Please analyze the attached mechanical engineering drawing and extract all dimensions along with the symbol provided to it and other information in a table format. (Markdown)."
                     },
                     {
                         "type": "image_url",
