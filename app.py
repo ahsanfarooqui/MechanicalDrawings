@@ -25,7 +25,7 @@ def extract_drawing_information(image_bytes):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format (Markdown)."
+                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a dictionary format."
                     },
                     {
                         "type": "image_url",
@@ -39,7 +39,7 @@ def extract_drawing_information(image_bytes):
     )
     
     # Extract and return the result
-    return response.choices[0].messages.content
+    return response.choices[0]
 
 # Streamlit interface
 st.title("Mechanical Drawing Analyzer")
