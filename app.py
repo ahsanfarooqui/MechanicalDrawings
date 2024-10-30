@@ -25,7 +25,7 @@ def extract_drawing_information(image_bytes):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format (Markdown) and as JSON."
+                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format (Markdown)."
                     },
                     {
                         "type": "image_url",
@@ -39,7 +39,7 @@ def extract_drawing_information(image_bytes):
     )
     
     # Extract and return the result
-    return response.choices[0]
+    return response.choices[0].messages.content
 
 # Streamlit interface
 st.title("Mechanical Drawing Analyzer")
@@ -63,10 +63,10 @@ if uploaded_file is not None:
     st.markdown(extracted_info)
     
     # Attempt to display JSON data separately if available
-    try:
-        json_start = extracted_info.index('{')
-        json_end = extracted_info.rindex('}') + 1
-        json_data = json.loads(extracted_info[json_start:json_end])
-        st.json(json_data)
-    except (ValueError, json.JSONDecodeError):
-        st.write("JSON data could not be extracted from the response.")
+    # try:
+    #     json_start = extracted_info.index('{')
+    #     json_end = extracted_info.rindex('}') + 1
+    #     json_data = json.loads(extracted_info[json_start:json_end])
+    #     st.json(json_data)
+    # except (ValueError, json.JSONDecodeError):
+    #     st.write("JSON data could not be extracted from the response.")
