@@ -25,7 +25,7 @@ def extract_drawing_information(image_bytes):
                 "content": [
                     {
                         "type": "text",
-                        "text": "You are an expert in reading mechnaical engineering drawings. Please analyze the attached mechanical engineering drawing and extract all information in a table format. (Markdown). One comlumn should be dimension type like radius, diameter etc., second column should have sybmols like R1, R2 etc. and third should have the numeric value"
+                        "text": "You are an expert in reading mechnaical engineering drawings. Please analyze the attached mechanical engineering drawing and extract all information in a table format. (Markdown)."
                     },
                     {
                         "type": "image_url",
