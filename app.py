@@ -39,7 +39,7 @@ def extract_drawing_information(image_bytes):
     )
     
     # Extract and return the result
-    return response.choices[0]
+    return response.choices[0].message.content
 
 # Streamlit interface
 st.title("Mechanical Drawing Analyzer")
