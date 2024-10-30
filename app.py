@@ -25,7 +25,7 @@ def extract_drawing_information(image_bytes):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a dictionary format."
+                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format. (Markdown)"
                     },
                     {
                         "type": "image_url",
