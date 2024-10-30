@@ -1,12 +1,11 @@
 import base64
-import openai
-import os
 import json
 import streamlit as st
-from io import BytesIO
+from openai import OpenAI
+import os
 
-# Load API key from environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Initialize OpenAI client
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Function to encode the image
 def encode_image(image_bytes):
@@ -18,33 +17,29 @@ def extract_drawing_information(image_bytes):
     base64_image = encode_image(image_bytes)
     
     # Construct the chat message
-    messages = [
-        {
-            "role": "user",
-            "content": json.dumps([
-                {
-                    "type": "text",
-                    "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format (Markdown) and as JSON."
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/jpeg;base64,{base64_image}"
-                    }
-                }
-            ])
-        }
-    ]
-    
-    # Call the OpenAI API
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=messages
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "Please analyze the attached mechanical engineering drawing and extract key information in a table format (Markdown) and as JSON."
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{base64_image}"
+                        }
+                    }
+                ],
+            }
+        ],
     )
     
     # Extract and return the result
-    result = response.choices[0].message['content']
-    return result
+    return response.choices[0].message['content']
 
 # Streamlit interface
 st.title("Mechanical Drawing Analyzer")
