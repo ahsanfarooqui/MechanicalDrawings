@@ -18,7 +18,7 @@ def extract_drawing_information(image_bytes):
     
     # Construct the chat message
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4o-latest",
         messages=[
             {
                 "role": "user",
